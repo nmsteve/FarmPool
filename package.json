@@ -1,0 +1,29 @@
+{
+  "name": "lp-farm",
+  "version": "1.0.0",
+  "description": "LP-farm for staking LP Tokens and get rewards",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "ganache": "ganache-cli",
+    "dev": "truffle migrate --network kovan --reset",
+    "devverify": "truffle run verify Farm --network kovan",
+    "migrate": "rm -rf build && truffle migrate --network mainnet --reset",
+    "verify": "truffle run verify Farm --network mainnet"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.2.0"
+  },
+  "devDependencies": {
+    "@openzeppelin/test-helpers": "^0.5.9",
+    "@truffle/hdwallet-provider": "^1.2.0",
+    "dotenv": "^8.2.0",
+    "ganache-cli": "^6.12.1",
+    "truffle": "^5.1.52",
+    "truffle-plugin-verify": "^0.5.0"
+  },
+  "author": "nmsteve",
+  "license": "ISC"
+}

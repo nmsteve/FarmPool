@@ -1,0 +1,37 @@
+{
+  "default": {
+    "_Reward": {
+      "name": "ERC20 Reward Mock Token",
+      "symbol": "ERC20-RMT",
+      "supply": "100000000000"
+    },
+    "lp": [
+      {
+        "name": "CAKE-BNB",
+        "symbol": "CB-LP",
+        "decimals": 18,
+        "allocPoint": 70
+      },
+      {
+        "name": "VAS-BNB",
+        "symbol": "VP-LP",
+        "decimals": 18,
+        "allocPoint": 120
+      },
+      {
+        "name": "8PAY-BNB",
+        "symbol": "8B-LP",
+        "decimals": 18,
+        "allocPoint": 120
+      }
+
+    ],
+
+
+    "rewardPerBlock": "10000000",
+    "startBlock": "100",
+
+    "fund": "50000000000"
+
+  }
+}
