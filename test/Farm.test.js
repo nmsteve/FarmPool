@@ -73,13 +73,12 @@ contract('Farm', ([owner, alice, bob, carl]) => {
 
         it('is configured with the correct start block', async () => {
             const startBlock = await this.farm.startBlock();
-            const endBlock = await this.farm.endBlock();
-            assert.equal(true, startBlock > 0 && startBlock  < endBlock);
+            assert.equal(true, startBlock > 100);
         });
 
         it('is initialized for the Lp-Pair1 token', async () => {
             const poolLength = await this.farm.poolLength();
-            assert.equal(1, poolLength);
+            assert.equal(1, poolLength.words[0]);
 
             const poolInfo = await this.farm.poolInfo(0);
             assert.equal(poolInfo[0], this.lpPair.address);
@@ -184,12 +183,12 @@ contract('Farm', ([owner, alice, bob, carl]) => {
             await waitUntilBlock(10, this.startBlock + 50);
         });
 
-        it('6. has a total reward of 5000 MOCK pending', async () => {
+        it(' has a total reward of 5000 MOCK pending', async () => {
             const totalPending = await this.farm.totalPending();
             assert.equal(5000, totalPending);
         });
 
-        it('7. reserved 3000 for alice, 1000 for bob, and 1000 for carl', async () => {
+        it(' reserved 3000 for alice, 1000 for bob, and 1000 for carl', async () => {
             const pendingAlice = await this.farm.pending(0, alice);
             assert.equal(3000, pendingAlice);
 
@@ -201,7 +200,7 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('8. with a participant withdrawing after 70 blocks', () => {
+    describe('6. with a participant withdrawing after 70 blocks', () => {
         before(async () => {
             await waitUntilBlock(10, this.startBlock + 69);
             await this.farm.withdrawLP(0, 1500, {from: alice});
@@ -237,7 +236,7 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('9. with a participant partially withdrawing after 80 blocks', () => {
+    describe('7. with a participant partially withdrawing after 80 blocks', () => {
         before(async () => {
             await waitUntilBlock(10, this.startBlock + 79);
             await this.farm.withdrawLP(0, 1500, {from: carl});
@@ -273,7 +272,7 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('10 when it receives more funds (8000 MOCK)', () => {
+    describe('8 when it receives more funds (8000 MOCK)', () => {
         before(async () => {
             await this.reward.approve(this.farm.address, 8000);
             await this.farm.fundFarm(8000);
@@ -285,15 +284,16 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('11 with an added lp token (for 25%) after 100 blocks', () => {
+    describe('9. with an added lp token (for 25%) after 100 blocks', () => {
         before(async () => {
             await waitUntilBlock(10, this.startBlock + 99);
-            this.farm.addFarm(5, this.lpPair2.address, true);
+            await this.farm.addFarm(5, this.lpPair2.address, true);
+            
         });
 
         it('is initialized for the LP token 2', async () => {
             const poolLength = await this.farm.poolLength();
-            assert.equal(1, poolLength);
+            assert.equal(2, poolLength.words[0]);
         });
 
         it('reserved nothing for alice, 2450 for bob, and 1000 for carl', async () => {
@@ -308,7 +308,7 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('12 with 1st participant for lpPair2 after 110 blocks', () => {
+    describe('10 with 1st participant for lpPair2 after 110 blocks', () => {
         before(async () => {
             await waitUntilBlock(10, this.startBlock + 108);
             
@@ -373,7 +373,7 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('13 with 2nd participant for lpPair2 after 120 blocks', () => {
+    describe('11 with 2nd participant for lpPair2 after 120 blocks', () => {
         before(async () => {
             await waitUntilBlock(10, this.startBlock + 118);
 
@@ -423,7 +423,7 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('14 after 140 blocks of farming', () => {
+    describe('12 after 140 blocks of farming', () => {
         before(async () => {
             await waitUntilBlock(10, this.startBlock + 140);
         });
@@ -456,7 +456,7 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('15 with a participant partially withdrawing lpPair2 after 150 blocks', () => {
+    describe('13 with a participant partially withdrawing lpPair2 after 150 blocks', () => {
         before(async () => {
             await waitUntilBlock(10, this.startBlock + 149);
             await this.farm.withdrawLP(1, 200, {from: carl});
@@ -514,7 +514,7 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('16 with a participant doing an emergency withdraw LP-Pair2 after 160 blocks', () => {
+    describe('14 with a participant doing an emergency withdraw LP-Pair2 after 160 blocks', () => {
         before(async () => {
             await waitUntilBlock(10, this.startBlock + 159);
             await this.farm.emergencyWithdraw(1, {from: carl});
@@ -554,7 +554,7 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('17 when closed after 180 blocks', () => {
+    describe('15 when closed after 180 blocks', () => {
         before(async () => {
             await waitUntilBlock(10, this.startBlock + 180);
         });
@@ -587,7 +587,7 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('18 when closed for 20 blocks (after 200 blocks)', () => {
+    describe('16 when closed for 20 blocks (after 200 blocks)', () => {
         before(async () => {
             await waitUntilBlock(10, this.startBlock + 200);
         });
@@ -620,7 +620,7 @@ contract('Farm', ([owner, alice, bob, carl]) => {
         });
     });
 
-    describe('19 with participants withdrawing after closed', async () => {
+    describe('17 with participants withdrawing after closed', async () => {
         before(async () => {
             await this.farm.withdrawLP(1, 1000, {from: alice});
             await this.farm.withdrawLP(0, 500, {from: bob});

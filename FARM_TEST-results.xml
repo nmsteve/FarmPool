@@ -1,0 +1,63 @@
+<testsuite name="Mocha Tests" tests="61" failures="0" errors="0" skipped="0" timestamp="Thu, 19 May 2022 14:38:40 GMT" time="121.883">
+<testcase classname="Contract: Farm 1. when Farm contract is Deployed" name="is linked to the Mock reward Reward token" time="0.184"/>
+<testcase classname="Contract: Farm 1. when Farm contract is Deployed" name="is configured to reward 100 MOCK per block" time="0.233"/>
+<testcase classname="Contract: Farm 1. when Farm contract is Deployed" name="is configured with the correct start block" time="0.214"/>
+<testcase classname="Contract: Farm 1. when Farm contract is Deployed" name="is initialized for the Lp-Pair1 token" time="0.626"/>
+<testcase classname="Contract: Farm 1. when Farm contract is Deployed" name="holds 10,000 MOCK Token" time="0.218"/>
+<testcase classname="Contract: Farm 1. when Farm contract is Deployed" name="will run for 100 blocks" time="0.413"/>
+<testcase classname="Contract: Farm 2. before the start block" name="allows participants to join" time="1.194"/>
+<testcase classname="Contract: Farm 2. before the start block" name="does not assign any rewards yet" time="0.186"/>
+<testcase classname="Contract: Farm 3. after 10 blocks of farming" name="has a total reward of 1000 MOCK pending" time="0.187"/>
+<testcase classname="Contract: Farm 3. after 10 blocks of farming" name="reserved 750 for alice and 250 for bob" time="0.55"/>
+<testcase classname="Contract: Farm 4. with a 3th participant after 30 blocks" name="has a total reward of 3000 MOCK pending" time="0.203"/>
+<testcase classname="Contract: Farm 4. with a 3th participant after 30 blocks" name="reserved 2250 for alice, 750 for bob, and nothing for carl" time="0.77"/>
+<testcase classname="Contract: Farm 5. after 50 blocks of farming" name=" has a total reward of 5000 MOCK pending" time="0.302"/>
+<testcase classname="Contract: Farm 5. after 50 blocks of farming" name=" reserved 3000 for alice, 1000 for bob, and 1000 for carl" time="0.833"/>
+<testcase classname="Contract: Farm 6. with a participant withdrawing after 70 blocks" name="gives alice 3750 MOCK and 1500 LP" time="0.27"/>
+<testcase classname="Contract: Farm 6. with a participant withdrawing after 70 blocks" name="has no stake for alice" time="0.192"/>
+<testcase classname="Contract: Farm 6. with a participant withdrawing after 70 blocks" name="has a total reward of 3250 MOCK pending" time="0.146"/>
+<testcase classname="Contract: Farm 6. with a participant withdrawing after 70 blocks" name="reserved nothing for alice, 1250 for bob, and 2000 for carl" time="0.772"/>
+<testcase classname="Contract: Farm 7. with a participant partially withdrawing after 80 blocks" name="gives carl 2800 MOCK and 1500 LP" time="0.381"/>
+<testcase classname="Contract: Farm 7. with a participant partially withdrawing after 80 blocks" name="has a 500 LP-Pair1 staked for carl" time="0.151"/>
+<testcase classname="Contract: Farm 7. with a participant partially withdrawing after 80 blocks" name="has a total reward of 1450 MOCK pending" time="0.193"/>
+<testcase classname="Contract: Farm 7. with a participant partially withdrawing after 80 blocks" name="reserved nothing for alice, 1450 for bob, and nothing for carl" time="0.859"/>
+<testcase classname="Contract: Farm 8 when it receives more funds (8000 MOCK)" name="runs for 180 blocks (80 more)" time="0.129"/>
+<testcase classname="Contract: Farm 9. with an added lp token (for 25%) after 100 blocks" name="is initialized for the LP token 2" time="0.186"/>
+<testcase classname="Contract: Farm 9. with an added lp token (for 25%) after 100 blocks" name="reserved nothing for alice, 2450 for bob, and 1000 for carl" time="0.851"/>
+<testcase classname="Contract: Farm 10 with 1st participant for lpPair2 after 110 blocks" name="holds 1000 Lp-Pair1 for the participants (Farm 1)" time="0.872"/>
+<testcase classname="Contract: Farm 10 with 1st participant for lpPair2 after 110 blocks" name="holds 500 LP-Pair2 for the participants (Farm2" time="0.72"/>
+<testcase classname="Contract: Farm 10 with 1st participant for lpPair2 after 110 blocks" name="has a total reward of 4450 MOCK pending" time="0.131"/>
+<testcase classname="Contract: Farm 10 with 1st participant for lpPair2 after 110 blocks" name="reserved 75% for LP-Pair1 (50/50 bob/carl)" time="0.735"/>
+<testcase classname="Contract: Farm 10 with 1st participant for lpPair2 after 110 blocks" name="reserved 25% for LP_Pair2 (not rewarded) -&#x3E; 250 MOCK inaccessible" time="0.76"/>
+<testcase classname="Contract: Farm 11 with 2nd participant for lpPair2 after 120 blocks" name="holds 1500 lP-Pair2 for the participants" time="0.865"/>
+<testcase classname="Contract: Farm 11 with 2nd participant for lpPair2 after 120 blocks" name="has a total reward of 5450 MOCK pending" time="0.293"/>
+<testcase classname="Contract: Farm 11 with 2nd participant for lpPair2 after 120 blocks" name="reserved 75% for LP-Pair1 with 3200 for bob and 1750 for carl" time="0.927"/>
+<testcase classname="Contract: Farm 11 with 2nd participant for lpPair2 after 120 blocks" name="reserved 25% for lP-Pair2 with 250 for carl" time="0.509"/>
+<testcase classname="Contract: Farm 12 after 140 blocks of farming" name="has a total reward of 7450 MOCK pending" time="0.195"/>
+<testcase classname="Contract: Farm 12 after 140 blocks of farming" name="reserved 75% for LP-Pair1 with 3950 for bob and 2500 for carl" time="0.998"/>
+<testcase classname="Contract: Farm 12 after 140 blocks of farming" name="reserved 25% for LP-Pair2 with 333 for alice and 416 for carl" time="0.817"/>
+<testcase classname="Contract: Farm 13 with a participant partially withdrawing lpPair2 after 150 blocks" name="gives carl 500 MOCK and 200 LP-Pair1" time="0.377"/>
+<testcase classname="Contract: Farm 13 with a participant partially withdrawing lpPair2 after 150 blocks" name="has a total reward of 7950 MOCK pending" time="0.162"/>
+<testcase classname="Contract: Farm 13 with a participant partially withdrawing lpPair2 after 150 blocks" name="reserved 75% for LP-Pair1 with 4325 for bob and 2875 for carl" time="0.547"/>
+<testcase classname="Contract: Farm 13 with a participant partially withdrawing lpPair2 after 150 blocks" name="reserved 25% for LP-Pair2 with 500 for alice and nothing for carl" time="0.465"/>
+<testcase classname="Contract: Farm 13 with a participant partially withdrawing lpPair2 after 150 blocks" name="holds 1000 LP for the participants" time="0.678"/>
+<testcase classname="Contract: Farm 13 with a participant partially withdrawing lpPair2 after 150 blocks" name="holds 1300 lpPair2 for the participants" time="0.55"/>
+<testcase classname="Contract: Farm 14 with a participant doing an emergency withdraw LP-Pair2 after 160 blocks" name="gives carl 500 LP-Pair" time="0.197"/>
+<testcase classname="Contract: Farm 14 with a participant doing an emergency withdraw LP-Pair2 after 160 blocks" name="gives carl no MOCK" time="0.258"/>
+<testcase classname="Contract: Farm 14 with a participant doing an emergency withdraw LP-Pair2 after 160 blocks" name="holds no LP-Pair2 for carl" time="0.2"/>
+<testcase classname="Contract: Farm 14 with a participant doing an emergency withdraw LP-Pair2 after 160 blocks" name="has no reward for carl" time="0.224"/>
+<testcase classname="Contract: Farm 14 with a participant doing an emergency withdraw LP-Pair2 after 160 blocks" name="holds 1000 LP-Pair2 for alice" time="0.408"/>
+<testcase classname="Contract: Farm 14 with a participant doing an emergency withdraw LP-Pair2 after 160 blocks" name="has 750 MOCK pending for alice (receives bobs share)" time="0.263"/>
+<testcase classname="Contract: Farm 15 when closed after 180 blocks" name="has a total reward of 10950 MOCK pending" time="0.224"/>
+<testcase classname="Contract: Farm 15 when closed after 180 blocks" name="reserved 75% for LP-Pair1 with 4325 for bob and 2875 for carl" time="0.819"/>
+<testcase classname="Contract: Farm 15 when closed after 180 blocks" name="reserved 25% for LP-Pair2 with 1250 for alice" time="0.809"/>
+<testcase classname="Contract: Farm 16 when closed for 20 blocks (after 200 blocks)" name="still has a total reward of 10950 MOCK pending" time="0.204"/>
+<testcase classname="Contract: Farm 16 when closed for 20 blocks (after 200 blocks)" name="has a pending reward for LP-Pair1 5450 for bob and 4000 for carl" time="0.759"/>
+<testcase classname="Contract: Farm 16 when closed for 20 blocks (after 200 blocks)" name="has a pending reward for LP-Pair2 with 1250 for alice" time="0.677"/>
+<testcase classname="Contract: Farm 17 with participants withdrawing after closed" name="gives alice 1250 MOCK and 1000 lP-Pair2" time="0.443"/>
+<testcase classname="Contract: Farm 17 with participants withdrawing after closed" name="gives carl 5450 MOCK and 500 LP-Pair" time="0.397"/>
+<testcase classname="Contract: Farm 17 with participants withdrawing after closed" name="gives carl 4000 MOCK and 500 LP-Pair" time="0.547"/>
+<testcase classname="Contract: Farm 17 with participants withdrawing after closed" name="has an end balance of 250 MOCK, which is lost forever" time="0.392"/>
+<testcase classname="Contract: Farm 17 with participants withdrawing after closed" name="has no pending reward for LP_Pair1" time="0.827"/>
+<testcase classname="Contract: Farm 17 with participants withdrawing after closed" name="has no pending reward for LP-Pair2" time="0.787"/>
+</testsuite>
