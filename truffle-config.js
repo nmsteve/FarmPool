@@ -6,7 +6,10 @@ module.exports = {
         development: {
             host: "localhost",
             port: 8545,
-            network_id: "*"
+            network_id: "*",
+            gas: 0x1fffffffffffff,
+
+
         },
 
         mainnet: {
@@ -46,9 +49,9 @@ module.exports = {
         ropsten: {
             provider: () => new HDWalletProvider(
                 process.env.MNEMONIC, 
-                `wss://ropsten.infura.io/ws/v3/${process.env.INFURA_ID}`),
+                `wss://ropsten.infura.io/ws/v3/${process.env.INFURA_ID_1}`),
             network_id: 3,
-            gas: 5000000,
+            //gas: 5000000,
             networkCheckTimeout: 300000,
             timeoutBlocks:10,
             skipDryRun: true
@@ -66,8 +69,8 @@ module.exports = {
           goerli: {
             provider: () => new HDWalletProvider(
                 process.env.MNEMONIC, 
-                //`wss://goerli.infura.io/ws/v3/${process.env.INFURA_ID}`
-                `https://eth-goerli.alchemyapi.io/v2/${process.env.ALCHEMY_GOERLI}`
+                `wss://goerli.infura.io/ws/v3/${process.env.INFURA_ID_1}`
+                // `https://eth-goerli.alchemyapi.io/v2/${process.env.ALCHEMY_GOERLI}`
                 ),
             network_id: 5,
             gas: 5000000,        
@@ -98,7 +101,7 @@ module.exports = {
     mocha: {
         reporter: 'xunit',
         reporterOptions: {
-          output: 'FARM_TEST-results.xml'
+          output: 'CaKePool_TEST-results.xml'
         }
     },
 

@@ -28,10 +28,10 @@
     ],
 
 
-    "rewardPerBlock": "10000000",
+    "rewardPerBlock": "100",
     "startBlock": "100",
 
-    "fund": "50000000000"
+    "fund": "50000"
 
   }
 }

@@ -13,3 +13,4 @@ node_modules
 .env.production.local
 build
 
+package-lock.json

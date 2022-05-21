@@ -88,7 +88,7 @@ contract('CakePool', ([owner, alice, bob, carl,treasury, operator,]) => {
     });
     
 
-    describe('Alice and Bob staking CAKE after 10 blocks of farming', () => {
+    describe('When Alice and Bob staking CAKE after 10 blocks of farming', () => {
         before(async () => {
             await waitUntilBlock(10, this.startBlock + 10);
         });
@@ -109,5 +109,4 @@ contract('CakePool', ([owner, alice, bob, carl,treasury, operator,]) => {
 
     });
 
-});
     
