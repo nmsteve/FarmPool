@@ -1,7 +1,10 @@
 const Reward= artifacts.require("./Reward.sol");
 const LpPair = artifacts.require('./LpPair.sol');
 const Farm = artifacts.require("./Farm.sol");
+const CakePool = artifacts.require('./CakePool.sol');
+const { web3 } = require("@openzeppelin/test-helpers/src/setup");
 const allConfigs = require("../config.json");
+
 
 module.exports =async function(deployer, network, addresses) {
 
@@ -27,10 +30,9 @@ module.exports =async function(deployer, network, addresses) {
   
   //Deploy Reward Contract
   if (!_Reward.address) {
-    deploy = deploy
-      .then(() => {
+    deploy = deploy.then(() => {
         return deployer.deploy(
-          Reward,
+           Reward,
           _Reward.name,
           _Reward.symbol,
           web3.utils.toBN(_Reward.supply)
@@ -40,12 +42,11 @@ module.exports =async function(deployer, network, addresses) {
   }
 
   //Deploy Farm contract
-  deploy = deploy  
-    .then(() => {
+  deploy = deploy.then(() => {
       return deployer.deploy(
          Farm,
         _Reward.address || Reward.address,
-        web3.utils.toBN(config.rewardPerBlock), 
+        config.rewardPerBlock, 
         _startBlock
 
       );
@@ -53,8 +54,7 @@ module.exports =async function(deployer, network, addresses) {
 
     //set the intial funding
     if (config.fund) {
-      deploy = deploy
-        .then(() => {
+      deploy = deploy.then(() => {
           return Reward.address
             ? Reward.at(Reward.address)
             : Reward.deployed();
@@ -71,8 +71,7 @@ module.exports =async function(deployer, network, addresses) {
     //Deploy LP pairs (3)
     config.lp.forEach((token) => {
       if (!token.address) {
-        deploy = deploy
-          .then(() => {
+        deploy = deploy.then(() => {
             return deployer.deploy(
               LpPair,
               token.name,
@@ -83,12 +82,14 @@ module.exports =async function(deployer, network, addresses) {
           .then(() => {
             return LpPair.deployed();
           })
-          .then((lpInstance) => {
+          .then( (lpInstance) => {
             const amount = web3.utils.toBN(10).pow(web3.utils.toBN(token.decimals))
               .mul(web3.utils.toBN(1000));
 
             const promises = addresses.map((address) => {
-              return lpInstance.mint(address, amount);
+              lpInstance.mint(address, amount);
+              lpInstance.approve(Farm.address,1000000000000000,{from: addresses[2]})
+              return
             });
 
             return Promise.all(promises);
@@ -96,16 +97,45 @@ module.exports =async function(deployer, network, addresses) {
       }
 
     // add LP-Pairs to the the Farm
-      deploy = deploy
-        .then(() => { return Farm.deployed(); })
+      deploy = deploy.then(() => { return Farm.deployed(); })
         .then((farmInstance) => {
-          return farmInstance.addFarm(
+          farmInstance.addFarm(
             token.allocPoint,
             token.address || LpPair.address,
             false
           );
+          farmInstance.stakeLP(
+            0, 100, {from: addresses[2]}
+          );
+           return
         });
+
+        
     });
+  
+    
+
+    
+    deploy = deploy.then( () => {
+      
+      const admin =  addresses[0]
+      const treasury =addresses[4]
+      const operator = addresses[5]
+      const pid = 0
+      
+      return deployer.deploy(
+           CakePool,
+           Reward.address,
+           Farm.address,
+           admin,
+           treasury,
+           operator,
+          pid) 
+
+      });
+    
+    
+    
 
     return deploy;
 };

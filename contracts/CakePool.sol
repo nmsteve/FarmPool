@@ -138,7 +138,7 @@ contract CakePool is Ownable, Pausable {
         require(balance != 0, "Balance must exceed 0");
         dummyToken.safeTransferFrom(msg.sender, address(this), balance);
         dummyToken.approve(address(masterchefV2), balance);
-        masterchefV2.deposit(cakePoolPID, balance);
+        masterchefV2.stakeLP(cakePoolPID, balance);
         emit Init();
     }
 
@@ -485,11 +485,11 @@ contract CakePool is Ownable, Pausable {
     /**
      * @notice Harvest pending CAKE tokens from MasterChef
      */
-    function harvest() internal {
-        uint256 pendingCake = masterchefV2.pendingCake(cakePoolPID, address(this));
+    function harvest() public{
+        uint256 pendingCake = masterchefV2.pending(cakePoolPID,msg.sender );
         if (pendingCake > 0) {
             uint256 balBefore = available();
-            masterchefV2.withdraw(cakePoolPID, 0);
+            masterchefV2.withdrawLP(cakePoolPID, 0);
             uint256 balAfter = available();
             emit Harvest(msg.sender, (balAfter - balBefore));
         }
@@ -820,7 +820,7 @@ contract CakePool is Ownable, Pausable {
      * @return Returns total pending cake rewards
      */
     function calculateTotalPendingCakeRewards() public view returns (uint256) {
-        uint256 amount = masterchefV2.pendingCake(cakePoolPID, address(this));
+        uint256 amount = masterchefV2.pending(cakePoolPID, address(this));
         return amount;
     }
 

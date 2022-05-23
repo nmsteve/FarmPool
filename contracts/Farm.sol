@@ -189,6 +189,7 @@ contract Farm is Ownable {
         require(user.amount >= _amount, "withdraw: can't withdraw more than deposit");
         updatePool(_pid);
         uint256 pendingAmount = user.amount.mul(pool.accERC20PerShare).div(1e36).sub(user.rewardDebt);
+        
         erc20Transfer(msg.sender, pendingAmount);
         user.amount = user.amount.sub(_amount);
         user.rewardDebt = user.amount.mul(pool.accERC20PerShare).div(1e36);
@@ -218,14 +219,15 @@ contract Farm is Ownable {
     
     // Transfer ERC20 and update the required ERC20 to payout all rewards
     function erc20Transfer(address _to, uint256 _amount) internal {
+       //uint256 amount = _amount.div(1e18);
         reward.transfer(_to, _amount);
         paidOut += _amount;
     }
 
      // Restart the farm for a new farming period
     function restartFarmPool(uint256 _startBlock) public onlyOwner {
-         require(block.number > endBlock, "restart: not allowed,farm still running");
+         
          startBlock = block.number + _startBlock;
-         endBlock = startBlock;
+         
     }
 }

@@ -39,7 +39,7 @@ module.exports = {
         matic: {
             provider: () => new HDWalletProvider(process.env.MNEMONIC, `wss://polygon-mumbai.g.alchemy.com/v2/${process.env.ACHEMY_MUMBAI}`),
             network_id: 80001,
-            //gas: 5000000,        
+            gas: 20000000,        
             confirmations: 1,    // # of confs to wait between deployments. (default: 0)
             timeoutBlocks: 50,  // # of blocks before a deployment times out  (minimum/default: 50)
             networkCheckTimeout: 300000, //amount of time for Truffle to wait for a response from the node when testing the provider (in milliseconds)
@@ -51,18 +51,18 @@ module.exports = {
                 process.env.MNEMONIC, 
                 `wss://ropsten.infura.io/ws/v3/${process.env.INFURA_ID_1}`),
             network_id: 3,
-            //gas: 5000000,
+            gas: 8000000,
             networkCheckTimeout: 300000,
             timeoutBlocks:10,
             skipDryRun: true
         },
         bsc: {
-            provider: () => new HDWalletProvider(process.env.MNEMONIC, `https://data-seed-prebsc-1-s2.binance.org:8545`),    /// [Note]: New RPC Endpoint
-            //provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-2-s1.binance.org:8545`),  /// [Note]: 503 eror
+            //provider: () => new HDWalletProvider(process.env.MNEMONIC, `https://data-seed-prebsc-1-s2.binance.org:8545`),    /// [Note]: New RPC Endpoint
+            provider: () => new HDWalletProvider(process.env.MNEMONIC, `https://data-seed-prebsc-2-s1.binance.org:8545`),  /// [Note]: 503 eror
             network_id: 97,
-            networkCheckTimeout: 9999,
+            networkCheckTimeout: 100000,
             confirmations: 10,
-            timeoutBlocks: 200,
+            timeoutBlocks: 20,
             skipDryRun: true,   
           },
 
@@ -80,11 +80,12 @@ module.exports = {
             skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
           },
       
-          // cronos: {
-          //   provider: new HDWalletProvider(process.env.mnemonic, "https://evm-t3.cronos.org/"), 
-          //   network_id: "338",
-          //   skipDryRun: true
-          // },
+        //   cronos: {
+        //     provider: new HDWalletProvider(process.env.MNEMONIC, "https://evm-t3.cronos.org/"), 
+        //     network_id: "338",
+        //     skipDryRun: true,
+        //     networkCheckTimeout: 100000,
+        //   },
       
     },
 
