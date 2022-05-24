@@ -38,7 +38,9 @@ module.exports =async function(deployer, network, addresses) {
           web3.utils.toBN(_Reward.supply)
         );
       })
-      .then(() => {return Reward.deployed(); });
+      .then(() => {return Reward.deployed(); }).then((reward) => {
+      
+      });
   }
 
   //Deploy Farm contract
@@ -88,7 +90,7 @@ module.exports =async function(deployer, network, addresses) {
 
             const promises = addresses.map((address) => {
               lpInstance.mint(address, amount);
-              lpInstance.approve(Farm.address,1000000000000000,{from: addresses[2]})
+              lpInstance.approve(Farm.address,1000000000000000,{from: address})
               return
             });
 

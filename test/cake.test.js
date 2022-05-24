@@ -34,9 +34,6 @@ contract(CakePool,([owner, alice, bob, carl,treasury, operator,]) => {
             treasury,
             operator,
             0 ) 
-
-        
-    
     });
 
 
@@ -151,15 +148,18 @@ contract(CakePool,([owner, alice, bob, carl,treasury, operator,]) => {
             const amount  = web3.utils.toBN(1e20)
             const lockduration = 3600 * 24 * 367
             await expectRevert( this.CakePool.deposit(amount,lockduration,{from:alice}),'Maximum lock period exceeded')
-
         });
 
         it("Should Havest Alice pending Reward in the Farm", async () =>{
-            const value = new BN('0')
-            const harvest = await this.CakePool.harvest({ from: alice })
-            expectEvent(harvest,"Harvest", {sender:alice,amount:value})
+            // const value = new BN('0')
+            // const harvest = await this.CakePool.harvest({ from: alice })
+            // expectEvent(harvest,"Harvest", {sender:alice,amount:value})
 
-           
+            const amount  = web3.utils.toBN(1e20)
+            const lockduration = 3600 * 24 * 7
+            
+            await this.CakePool.deposit(amount,lockduration,{from:alice});
+            //await expectRevert( this.CakePool.deposit(amount,lockduration,{from:alice}),'Maximum lock period exceeded')
 
         } )
           

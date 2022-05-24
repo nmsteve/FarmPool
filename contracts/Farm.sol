@@ -220,8 +220,9 @@ contract Farm is Ownable {
     // Transfer ERC20 and update the required ERC20 to payout all rewards
     function erc20Transfer(address _to, uint256 _amount) internal {
        //uint256 amount = _amount.div(1e18);
-        reward.transfer(_to, _amount);
+        reward.Safetransfer(_to, _amount);
         paidOut += _amount;
+        return;
     }
 
      // Restart the farm for a new farming period

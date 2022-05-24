@@ -334,7 +334,8 @@ contract CakePool is Ownable, Pausable {
         uint256 userCurrentLockedBalance;
         uint256 pool = balanceOf();
         if (_amount > 0) {
-            token.safeTransferFrom(_user, address(this), _amount);
+            uint256 amount = _amount/1e18;
+            token.safeTransferFrom(_user, address(this), amount);
             currentAmount = _amount;
         }
 
@@ -485,8 +486,8 @@ contract CakePool is Ownable, Pausable {
     /**
      * @notice Harvest pending CAKE tokens from MasterChef
      */
-    function harvest() public{
-        uint256 pendingCake = masterchefV2.pending(cakePoolPID,msg.sender );
+    function harvest() internal{
+        uint256 pendingCake = masterchefV2.pending(cakePoolPID, address(this) );
         if (pendingCake > 0) {
             uint256 balBefore = available();
             masterchefV2.withdrawLP(cakePoolPID, 0);

@@ -1,7 +1,16 @@
-INFURA_ID=''
+ETHERSCAN_API_KEY=''
 
 MNEMONIC=''
 
-MubaiApiKey = ""
+INFURA_ID_1 =''
+INFURA_ID_2 = ''
 
-ETHERSCAN_API_KEY=''
+ACHEMY_MUMBAI = ""
+ALCHEMY_KOVAN=''
+ALCHEMY_GOERLI=''
+
+REWARD =""
+FARM =""
+LpPair1 =''
+LpPair2 =""
+LpPair3=""
